@@ -22,11 +22,13 @@ if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';
 n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
+s.parentNode.insertBefore(t,s)}(window,document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
+
 fbq('init', '1764045541375451');
 fbq('track', 'PageView');
 </script>
+
 <noscript>
 <img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1764045541375451&ev=PageView&noscript=1"
@@ -59,10 +61,10 @@ body {
   max-width: 420px;
   text-align: center;
   padding: 30px 21px;
-  border: 1px solid rgba(69, 255, 132, .28);
+  border: 1px solid rgba(69,255,132,.28);
   border-radius: 25px;
-  background: rgba(4, 17, 9, .96);
-  box-shadow: 0 0 45px rgba(0, 255, 100, .10);
+  background: rgba(4,17,9,.96);
+  box-shadow: 0 0 45px rgba(0,255,100,.10);
 }
 
 .logo {
@@ -76,17 +78,16 @@ body {
   font-size: 27px;
   font-weight: 900;
   color: #fff;
-  background: linear-gradient(135deg, #4169E1, #0000CD);
-  box-shadow: 0 0 25px rgba(65, 105, 225, .4);
+  background: linear-gradient(135deg,#4169E1,#0000CD);
+  box-shadow: 0 0 25px rgba(65,105,225,.4);
 }
 
-/* ROYAL BLUE TITLE */
 h1 {
-  font-size: 35px;
+  font-size: clamp(29px, 8vw, 35px);
   font-weight: 900;
   letter-spacing: 2px;
   color: #4169E1;
-  text-shadow: 0 0 12px rgba(65, 105, 225, .65);
+  text-shadow: 0 0 12px rgba(65,105,225,.65);
 }
 
 .subtitle {
@@ -101,7 +102,7 @@ h1 {
   padding: 20px 10px;
   border-radius: 18px;
   border: 1px solid #38df79;
-  background: linear-gradient(135deg, #123b21, #071a0e);
+  background: linear-gradient(135deg,#123b21,#071a0e);
 }
 
 .commission small {
@@ -113,7 +114,7 @@ h1 {
 
 .commission h2 {
   margin: 5px 0;
-  font-size: 36px;
+  font-size: clamp(30px, 8vw, 36px);
   font-weight: 900;
   color: #8cffad;
 }
@@ -138,7 +139,7 @@ h1 {
   margin-bottom: 11px;
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,.09);
-  background: linear-gradient(100deg, #10271a, #09140d);
+  background: linear-gradient(100deg,#10271a,#09140d);
 }
 
 .bonus-icon {
@@ -172,13 +173,21 @@ h1 {
   margin-top: 22px;
   padding: 16px 12px;
   text-decoration: none;
+  border: 0;
   border-radius: 14px;
-  background: linear-gradient(90deg, #16d969, #7cff9f);
+  background: linear-gradient(90deg,#16d969,#7cff9f);
   color: #031509;
+  font-family: inherit;
   font-size: 16px;
   font-weight: 900;
-  box-shadow: 0 5px 25px rgba(34, 255, 119, .18);
-  transition: transform .2s;
+  box-shadow: 0 5px 25px rgba(34,255,119,.18);
+  transition: transform .2s, box-shadow .2s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.join-btn:hover {
+  box-shadow: 0 5px 30px rgba(34,255,119,.3);
 }
 
 .join-btn:active {
@@ -197,19 +206,29 @@ h1 {
   font-size: 10px;
   color: #829888;
 }
+
+@media (max-width: 360px) {
+  .container {
+    padding: 25px 15px;
+  }
+
+  .section-title {
+    font-size: 17px;
+  }
+}
 </style>
 </head>
 
 <body>
 <main class="container">
 
-  <div class="logo">HP</div>
+  <div class="logo" aria-label="HASS PAY logo">HP</div>
 
   <h1>HASS PAY</h1>
 
   <p class="subtitle">
     Welcome to HASS PAY<br>
-    Explore Commission Offers, Bonuses & Rewards
+    Explore Commission Offers, Bonuses &amp; Rewards
   </p>
 
   <section class="commission">
@@ -244,11 +263,14 @@ h1 {
     </div>
   </div>
 
-  <a class="join-btn"
-     href="https://t.me/+jgcd15dhRuRhMzE0"
-     target="_blank"
-     rel="noopener noreferrer">
-     ✈ JOIN TELEGRAM NOW
+  <!-- Telegram Button -->
+  <a
+    class="join-btn"
+    id="telegramButton"
+    href="https://t.me/+jgcd15dhRuRhMzE0"
+    target="_blank"
+    rel="noopener noreferrer">
+    ✈ JOIN TELEGRAM NOW
   </a>
 
   <p class="note">
@@ -262,5 +284,26 @@ h1 {
   </div>
 
 </main>
+
+<script>
+(function () {
+  var button = document.getElementById('telegramButton');
+
+  if (!button) return;
+
+  button.addEventListener('click', function () {
+    // Measures the website button click only.
+    // This does not confirm an actual Telegram channel join.
+    if (typeof window.fbq === 'function') {
+      window.fbq(
+        'trackCustom',
+        'TelegramButtonClick'
+      );
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
+
