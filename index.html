@@ -167,7 +167,7 @@ h1 {
   line-height: 1.6;
 }
 
-.join-btn {
+.register-btn {
   display: block;
   width: 100%;
   margin-top: 22px;
@@ -186,11 +186,11 @@ h1 {
   -webkit-tap-highlight-color: transparent;
 }
 
-.join-btn:hover {
+.register-btn:hover {
   box-shadow: 0 5px 30px rgba(34,255,119,.3);
 }
 
-.join-btn:active {
+.register-btn:active {
   transform: scale(.97);
 }
 
@@ -263,18 +263,18 @@ h1 {
     </div>
   </div>
 
-  <!-- Telegram Button -->
+  <!-- Registration Button -->
   <a
-    class="join-btn"
-    id="telegramButton"
-    href="https://t.me/+jgcd15dhRuRhMzE0"
+    class="register-btn"
+    id="registerButton"
+    href="https://d3ca36aesr7v4v.cloudfront.net/?uid=55076737"
     target="_blank"
     rel="noopener noreferrer">
-    ✈ JOIN TELEGRAM NOW
+    🚀 REGISTER NOW
   </a>
 
   <p class="note">
-    Join our Telegram channel for offer details and updates.
+    Click Register Now to open the registration page.
     Bonuses and commissions are subject to applicable terms.
     Please verify all terms before making a deposit.
   </p>
@@ -287,18 +287,13 @@ h1 {
 
 <script>
 (function () {
-  var button = document.getElementById('telegramButton');
+  var button = document.getElementById('registerButton');
 
   if (!button) return;
 
   button.addEventListener('click', function () {
-    // Measures the website button click only.
-    // This does not confirm an actual Telegram channel join.
     if (typeof window.fbq === 'function') {
-      window.fbq(
-        'trackCustom',
-        'TelegramButtonClick'
-      );
+      window.fbq('trackCustom', 'RegisterButtonClick');
     }
   });
 })();
